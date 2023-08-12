@@ -5,7 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
     mi_fetch.addEventListener('click', async () => {
         try {
             const url = 'http://127.0.0.1:8081/date'
-            const response = await fetch(url);  // Coge de forma async la respuesta
+            const response = await fetch(url, {
+                method: 'GET',
+                mode: 'cors',
+                credentials: 'include'
+            }); // Coge de forma async la respuesta
+            console.log(response);
             const data = await response.json();  //Evalua de form a async el cuerpo (payload)
             broma.innerHTML = `<p>${data.date}</p>`;
         } catch (error) {
